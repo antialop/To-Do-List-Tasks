@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskmanager.TaskCategory.*
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,24 +26,36 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var rvTask: RecyclerView
     private lateinit var taskAdapter: TaskAdapter
+    private lateinit var fabAddTask:FloatingActionButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initComponent()
         initUI()
+        initListeners()
     }
 
+    private fun initListeners() {
+        fabAddTask.setOnClickListener { showDialog() }
+    }
+
+    private fun showDialog(){
+
+    }
     private fun initComponent() {
         rvCategories = findViewById(R.id.rvCategories)
         rvTask = findViewById(R.id.rvTask)
+        fabAddTask = findViewById(R.id.fabAddTask)
     }
 
     private fun initUI() {
+//        CATEGORIES
         categoriesAdapter = CategoriesAdapter(categories)
         rvCategories.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         rvCategories.adapter = categoriesAdapter
 
+//        TASKS
         taskAdapter = TaskAdapter(tasks)
         rvTask.layoutManager = LinearLayoutManager(this)
         rvTask.adapter = taskAdapter
