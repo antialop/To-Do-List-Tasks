@@ -9,5 +9,17 @@ class CategoriesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val divider: View = view.findViewById(R.id.divider)
     fun render(taskCategory: TaskCategory) {
         tvCategoryName.text = "EJEMPLO"
+
+        when(taskCategory){
+            TaskCategory.Business -> {
+                tvCategoryName.text = "Negocios"
+            }
+            TaskCategory.Other -> {
+                tvCategoryName.text = "Otros"
+            }
+            TaskCategory.Personal -> {
+                tvCategoryName.text = "Personal"
+            }
+        }
     }
 }
