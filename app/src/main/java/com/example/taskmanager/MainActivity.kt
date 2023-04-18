@@ -48,6 +48,28 @@ class MainActivity : AppCompatActivity() {
     private fun showDialog(){
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.dialog_task)
+
+        val btnAddTask: Button = dialog.findViewById(R.id.btnAddTask)
+        val etTask: EditText = dialog.findViewById(R.id.etTask)
+        val rgCategories: RadioGroup = dialog.findViewById(R.id.rgCategories)
+
+        btnAddTask.setOnClickListener {
+            val currentTask = etTask.text.toString()
+            if(currentTask.isNotEmpty()){
+                val selectedId = rgCategories.checkedRadioButtonId
+                val selectedRadioButton:RadioButton = rgCategories.findViewById(selectedId)
+                val currentCategory:TaskCategory = when(selectedRadioButton.text){
+                    getString(R.string.dialog_category_business) -> Business
+                    getString(R.string.dialog_category_personal) -> Personal
+                    else -> Other
+                }
+
+                tasks.add(Task(currentTask, currentCategory))
+                updateTasks()
+                dialog.hide()
+            }
+        }
+
         dialog.show()
     }
     private fun initComponent() {
@@ -67,5 +89,10 @@ class MainActivity : AppCompatActivity() {
         taskAdapter = TaskAdapter(tasks)
         rvTask.layoutManager = LinearLayoutManager(this)
         rvTask.adapter = taskAdapter
+    }
+    private fun updateTasks(){
+        taskAdapter.notifyDataSetChanged()
+
+
     }
 }
