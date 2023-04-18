@@ -3,4 +3,6 @@
     <string name="todo_title">Organizador de tareas</string>
     <string name="categories">Categorias</string>
     <string name="tasks">Tareas</string>
+
+    <string name="dialog_add_task">Añade la tarea</string>
 </resources>
