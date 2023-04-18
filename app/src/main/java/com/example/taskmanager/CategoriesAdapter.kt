@@ -1,11 +1,15 @@
 package com.example.taskmanager
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class CategoriesAdapter(private val categories:List<TaskCategory>):RecyclerView.Adapter<CategoriesViewHolder>() {
+class CategoriesAdapter(private val categories: List<TaskCategory>) :
+    RecyclerView.Adapter<CategoriesViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriesViewHolder {
-        TODO("Not yet implemented")
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_task_category, parent, false)
+        return CategoriesViewHolder(view)
     }
 
     override fun getItemCount(): Int {
@@ -15,7 +19,7 @@ class CategoriesAdapter(private val categories:List<TaskCategory>):RecyclerView.
 
 
     override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.render(categories[position])
     }
 
 }

@@ -17,7 +17,8 @@ class MainActivity : AppCompatActivity() {
     private fun initComponent() {
         rvCategories = findViewById(R.id.rvCategories)
     }
-    private fun initUI(){
+
+    private fun initUI() {
 
     }
 }
