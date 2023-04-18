@@ -9,8 +9,10 @@ class CategoriesAdapter(private val categories:List<TaskCategory>):RecyclerView.
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return categories.size
     }
+//    override fun getItemCount() =  categories.size
+
 
     override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {
         TODO("Not yet implemented")
