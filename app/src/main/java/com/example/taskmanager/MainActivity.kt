@@ -4,19 +4,27 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.taskmanager.TaskCategory.*
 
 class MainActivity : AppCompatActivity() {
 
     private val categories = listOf(
-        TaskCategory.Business,
-        TaskCategory.Personal,
-        TaskCategory.Other
+        Business,
+        Personal,
+        Other
+    )
+
+    private val tasks = mutableListOf(
+        Task("PruebaBussiness", Business),
+        Task("PruebaPersona", Personal),
+        Task("PruebaOther", Other)
     )
 
     private lateinit var rvCategories: RecyclerView
     private lateinit var categoriesAdapter: CategoriesAdapter
 
     private lateinit var rvTask: RecyclerView
+    private lateinit var taskAdapter: TaskAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -31,7 +39,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun initUI() {
         categoriesAdapter = CategoriesAdapter(categories)
-        rvCategories.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
+        rvCategories.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         rvCategories.adapter = categoriesAdapter
+
+        taskAdapter = TaskAdapter(tasks)
+        rvTask.layoutManager = LinearLayoutManager(this)
+        rvTask.adapter = taskAdapter
     }
 }
